@@ -31,7 +31,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/.m2/repository
-          key: ${{ runner.os }}-maven-${{ hashFiles('**/main.api/pom.xml') }}
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/Inventory/pom.xml') }}
           restore-keys: |
             ${{ runner.os }}-maven-
 
@@ -62,7 +62,8 @@ jobs:
         with:
           token: ${{ secrets.TOKEN }}
           commit-message: 'Build successful - creating PR'
-          title: 'PR from ${{ needs.build.outputs.branch_name }}'
+          title: 'PR from ${{ needs.build.outputs.branch_name }} to Develop'
           body: 'Auto-generated PR after successful build of ${{ needs.build.outputs.branch_name }}'
           base: develop
-          branch: ${{ needs.build.outputs.branch_name }}
+          branch: pr-auto/${{ needs.build.outputs.branch_name }}
+          delete-branch: true
