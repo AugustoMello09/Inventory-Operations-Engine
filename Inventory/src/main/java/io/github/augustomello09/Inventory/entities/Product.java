@@ -8,6 +8,8 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "tb_product")
@@ -41,6 +43,9 @@ public class Product {
     private LocalDate updatedAt;
 
     private boolean active;
+
+    @OneToMany(mappedBy = "product")
+    private List<Inventory> inventories = new ArrayList<>();
 
     protected Product(){}
 

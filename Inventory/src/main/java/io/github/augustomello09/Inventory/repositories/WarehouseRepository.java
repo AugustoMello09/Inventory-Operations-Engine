@@ -13,4 +13,8 @@ public interface WarehouseRepository extends JpaRepository<Warehouse, Long> {
     SELECT COUNT(w) > 0 FROM Warehouse w WHERE w.name = :name
     """)
     boolean existName(@Param("name") String name);
+
+    boolean existsByIdAndActiveTrue(Long id);
+
+
 }
